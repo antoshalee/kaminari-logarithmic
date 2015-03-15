@@ -1,6 +1,6 @@
 # Kaminari::Logarithmic
 
-TODO: Write a gem description
+This plugin extends popular [kaminari](https://github.com/amatsuda/kaminari) gem to provide functionality for distributing big number of pages logarithmically. Such approach originally was  discussed [here](http://stackoverflow.com/questions/7835752/how-to-do-page-navigation-for-many-many-pages-logarithmic-page-navigation).
 
 ## Installation
 

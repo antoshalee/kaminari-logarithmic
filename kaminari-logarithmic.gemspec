@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = Kaminari::Logarithmic::VERSION
   spec.authors       = ["Anton Lee"]
   spec.email         = ["antoshalee@gmail.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
+  spec.summary       = %q{Kaminari extension for logarithmic pagination}
+  spec.description   = %q{Kaminari extension for logarithmic pagination}
+  spec.homepage      = "https://github.com/antoshalee/kaminari-logarithmic"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
