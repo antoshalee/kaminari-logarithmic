@@ -23,14 +23,6 @@ module Kaminari
 
         private
 
-        def enough?(value)
-          if asc?
-            value < @global_finish
-          else
-            value > @global_finish
-          end
-        end
-
         def next_finish(start, step)
           variants = [@global_finish, next_point(start, step * @base)]
           asc? ? variants.min : variants.max
