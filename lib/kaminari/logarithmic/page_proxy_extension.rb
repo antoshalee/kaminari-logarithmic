@@ -1,7 +1,7 @@
 module Kaminari
   module Logarithmic
     module PageProxyExtension
-      def logaritmic?
+      def logarithmic?
         @options[:logarithmic_pages].include? @page
       end
     end
