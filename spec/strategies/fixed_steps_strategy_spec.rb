@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Kaminari::Logarithmic::SeqBuilder do
+describe Kaminari::Logarithmic::Strategies::FixedStepsStrategy do
 
   describe ".build" do
     {
