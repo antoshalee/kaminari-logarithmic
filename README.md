@@ -41,7 +41,7 @@ More details and options on [kaminari documentation page](https://github.com/ama
     ```
   Example:
     ```ruby
-    <% if page.left_outer? || page.right_outer? || page.inside_window? || page.logaritmic? -%>
+    <% if page.left_outer? || page.right_outer? || page.inside_window? || page.logarithmic? -%>
       <%= page_tag page %>
     ```
 
