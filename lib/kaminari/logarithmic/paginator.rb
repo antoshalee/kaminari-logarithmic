@@ -1,8 +1,6 @@
 module Kaminari
   module Logarithmic
-
     class Paginator < ::Kaminari::Helpers::Paginator
-
       def initialize(template, options)
         super(template, options)
 
@@ -48,8 +46,6 @@ module Kaminari
         right_finish = @window_options[:total_pages] - @window_options[:right]
         @right_log_seq = SeqBuilder.new(right_start, right_finish).build
       end
-
     end
-
   end
 end

@@ -1,7 +1,6 @@
 module Kaminari
   module Logarithmic
     class SeqBuilder
-
       def initialize(start, finish, options = {})
         @options = options.reverse_merge!(strategy: :even)
         build_strategy(start, finish)

@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe Kaminari::Logarithmic::Strategies::EvenStrategy do
-
   describe ".build" do
     {
       [1, 100] => [1, 3, 7, 15, 31, 63],

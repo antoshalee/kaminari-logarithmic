@@ -2,7 +2,6 @@ module Kaminari
   module Logarithmic
     module Strategies
       class BaseStrategy
-
         def build
           fail NotImplementedError
         end
@@ -24,7 +23,6 @@ module Kaminari
             value > @global_finish
           end
         end
-
       end
     end
   end

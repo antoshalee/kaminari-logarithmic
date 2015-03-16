@@ -2,7 +2,6 @@ module Kaminari
   module Logarithmic
     module Strategies
       class FixedStepsStrategy < BaseStrategy
-
         def initialize(start, finish, base = 10)
           @global_start = start
           @global_finish = finish

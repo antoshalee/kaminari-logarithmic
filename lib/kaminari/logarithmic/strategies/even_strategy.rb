@@ -2,7 +2,6 @@ module Kaminari
   module Logarithmic
     module Strategies
       class EvenStrategy < BaseStrategy
-
         def initialize(start, finish, base = 2)
           @global_start = start
           @global_finish = finish
@@ -24,7 +23,6 @@ module Kaminari
           end
           result
         end
-
       end
     end
   end
