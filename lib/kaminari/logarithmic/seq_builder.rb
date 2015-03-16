@@ -1,42 +1,77 @@
 module Kaminari
   module Logarithmic
     class SeqBuilder
-      BASE = 10
 
-      class << self
-        def build(start, finish)
-          start = next_point(start, 1)
-          asc_log_seq(start, finish)
+      def initialize(start, finish, base = 10)
+        @global_start = start
+        @global_finish = finish
+        @base = base
+      end
+
+      def build
+        start = next_point_or_itself(@global_start, @base)
+        asc_log_seq(start)
+      end
+
+      private
+
+      def asc?
+        @asc ||= (@global_start <= @global_finish)
+      end
+
+      def desc?
+        !asc?
+      end
+
+      def asc_log_seq(start)
+        step = @base
+        result = []
+        while enough?(start)
+          finish = next_finish(start, step)
+          result += seq_with_step(start, finish, step)
+          start = next_point(finish, step * @base)
+          step *= @base
         end
+        result
+      end
 
-        private
-
-        def asc_log_seq(start, global_finish)
-          power = 0
-          result = []
-          while start < global_finish
-            power += 1
-            finish = [global_finish, next_point(start, power + 1)].min
-            result += seq_with_step(start, finish, power)
-            start = next_point(finish, power + 1)
-          end
-          result
+      def enough?(value)
+        if asc?
+          value < @global_finish
+        else
+          value > @global_finish
         end
+      end
 
-        def next_point(value, power)
-          base = BASE ** power
-          ((value + base) / base) * base
+      def next_finish(start, step)
+        if asc?
+          [@global_finish, next_point(start, step * @base)].min
+        else
+          finish = [@global_finish, next_point(start, step * @base)].max
         end
+      end
 
-        def prev_point(value, power)
-          base = BASE ** power
-          (value / base) * base
+      # if value is divisible by step return itself
+      def next_point_or_itself(value, step)
+        if (value % step) == 0
+          value
+        else
+          next_point(value, step)
         end
+      end
 
-        def seq_with_step(start, finish, power)
-          step = BASE ** power
-          (start..finish).step(step).to_a
+      def next_point(value, step)
+        if asc?
+          ((value + step) / step) * step
+        else
+          return (value - step) if value % step == 0
+          (value / step) * step
         end
+      end
+
+      def seq_with_step(start, finish, step)
+        step = -step if desc?
+        start.step(finish, step).to_a
       end
 
     end
