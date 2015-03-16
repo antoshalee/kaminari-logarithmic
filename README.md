@@ -20,7 +20,11 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Do all the pagination stuff in controller and model usually. In your view use special helper instead of `paginate`:
+
+```ruby
+paginate_logarithmic @your_collection
+```
 
 ## Contributing
 
