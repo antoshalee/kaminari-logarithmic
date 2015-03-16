@@ -2,6 +2,7 @@ module Kaminari
   module Logarithmic
     class Paginator < ::Kaminari::Helpers::Paginator
       def initialize(template, options)
+        @logarithmic_strategy = options[:strategy]
         super(template, options)
 
         precalculate_logarithnmic_pages
@@ -38,13 +39,14 @@ module Kaminari
       end
 
       def precalculate_logarithnmic_pages
+        builder_options = { strategy: @logarithmic_strategy }
         left_start = @window_options[:current_page] - @window_options[:window] - 1
         left_finish = @window_options[:left] + 1
-        @left_log_seq = SeqBuilder.new(left_start, left_finish).build.reverse
+        @left_log_seq = SeqBuilder.new(left_start, left_finish, builder_options).build.reverse
 
         right_start = @window_options[:current_page] + @window_options[:window] + 1
         right_finish = @window_options[:total_pages] - @window_options[:right]
-        @right_log_seq = SeqBuilder.new(right_start, right_finish).build
+        @right_log_seq = SeqBuilder.new(right_start, right_finish, builder_options).build
       end
     end
   end

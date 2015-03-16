@@ -25,6 +25,15 @@ Do all the pagination stuff in controller and model usually. In your view use sp
 ```ruby
 paginate_logarithmic @your_collection
 ```
+By default even distribution strategy is used. You can specify strategy with `strategy` option:
+
+```ruby
+paginate_logarithmic @users, strategy: :fixed_steps
+```
+At the moment 2 strategies are available(TODO: describe both):
+
+ 1. `:even`.
+ 2. `:fixed_steps`
 
 ## Contributing
 

@@ -1,8 +1,10 @@
 module Kaminari
   module Logarithmic
     class SeqBuilder
+      DEFAULT_STRATEGY = :even
+
       def initialize(start, finish, options = {})
-        @options = options.reverse_merge!(strategy: :even)
+        @options = options
         build_strategy(start, finish)
       end
 
@@ -13,7 +15,8 @@ module Kaminari
       private
 
       def build_strategy(start, finish)
-        klass = "Kaminari::Logarithmic::Strategies::#{@options[:strategy].to_s.classify}Strategy".constantize
+        code = @options[:strategy] || DEFAULT_STRATEGY
+        klass = "Kaminari::Logarithmic::Strategies::#{code.to_s.camelize}Strategy".constantize
         @strategy = klass.new(start, finish)
       end
     end
