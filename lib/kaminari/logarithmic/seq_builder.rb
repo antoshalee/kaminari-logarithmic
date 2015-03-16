@@ -10,7 +10,15 @@ module Kaminari
 
       def build
         start = next_point_or_itself(@global_start, @base)
-        asc_log_seq(start)
+        step = @base
+        result = []
+        while enough?(start)
+          finish = next_finish(start, step)
+          result += seq_with_step(start, finish, step)
+          start = next_point(finish, step * @base)
+          step *= @base
+        end
+        result
       end
 
       private
@@ -23,18 +31,6 @@ module Kaminari
         !asc?
       end
 
-      def asc_log_seq(start)
-        step = @base
-        result = []
-        while enough?(start)
-          finish = next_finish(start, step)
-          result += seq_with_step(start, finish, step)
-          start = next_point(finish, step * @base)
-          step *= @base
-        end
-        result
-      end
-
       def enough?(value)
         if asc?
           value < @global_finish
@@ -44,11 +40,8 @@ module Kaminari
       end
 
       def next_finish(start, step)
-        if asc?
-          [@global_finish, next_point(start, step * @base)].min
-        else
-          finish = [@global_finish, next_point(start, step * @base)].max
-        end
+        variants = [@global_finish, next_point(start, step * @base)]
+        asc? ? variants.min : variants.max
       end
 
       # if value is divisible by step return itself
