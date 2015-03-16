@@ -16,7 +16,7 @@ module Kaminari
 
         return to_enum(:each_relevant_page) unless block_given?
         relevant_pages(@window_options).each do |i|
-          yield Kaminari::Logarithmic::PageProxy.new(extended_options, i, @last)
+          yield PageProxy.new(extended_options, i, @last)
         end
       end
 

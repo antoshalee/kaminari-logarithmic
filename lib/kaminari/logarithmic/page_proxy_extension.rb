@@ -1,6 +1,6 @@
 module Kaminari
   module Logarithmic
-    class PageProxy < Kaminari::Helpers::Paginator::PageProxy
+    module PageProxyExtension
 
       def logaritmic_page?
         @options[:logarithmic_pages].include? @page
