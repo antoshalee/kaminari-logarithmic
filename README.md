@@ -18,6 +18,33 @@ Or install it yourself as:
 
     $ gem install kaminari-logarithmic
 
+**Important**
+
+ Currently you will not see any changes if you use default kaminari views. To make it work you should customize views.
+
+1. First you should generate partials in `app/views/kaminari` folder (skip if you did that earlier):
+
+    ```ruby
+    rails g kaminari:views default
+    ```
+More details and options on [kaminari documentation page](https://github.com/amatsuda/kaminari).
+2.  Assuming you generated views in `erb` format find following lines in  _paginator.erb partial:
+
+    ```ruby
+    <% if page.left_outer? || page.right_outer? || page.inside_window? -%>
+      <%= page_tag page %>
+    ```
+
+3.  Add special condition (or supply your custom logic) :
+    ```
+    page.logarithmic_page?
+    ```
+  Example:
+    ```ruby
+    <% if page.left_outer? || page.right_outer? || page.inside_window? || page.logaritmic_page? -%>
+      <%= page_tag page %>
+    ```
+
 ## Usage
 
 Do all the pagination stuff in controller and model usually. In your view use special helper instead of `paginate`:
