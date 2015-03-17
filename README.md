@@ -57,10 +57,20 @@ By default even distribution strategy is used. You can specify strategy with `st
 ```ruby
 paginate_logarithmic @users, strategy: :fixed_steps
 ```
-At the moment 2 strategies are available(TODO: describe both):
-
+## Strategies
+At the moment 2 strategies are available:
  1. `:even`.
  2. `:fixed_steps`
+
+Even distribution strategy
+--------------------------
+TODO: description and image
+
+Fixed steps strategy
+--------------------------
+The strategy is illustrated on the following image:
+
+![enter image description here](https://cloud.githubusercontent.com/assets/763341/6684529/60601f06-cca3-11e4-8081-3cc619b7c49c.png)
 
 ## Contributing
 
