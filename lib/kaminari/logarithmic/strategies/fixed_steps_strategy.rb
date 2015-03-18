@@ -12,7 +12,7 @@ module Kaminari
           start = next_point_or_itself(@global_start, @base)
           step = @base
           result = []
-          while enough?(start)
+          while not_enough?(start)
             finish = next_finish(start, step)
             result += seq_with_step(start, finish, step)
             start = next_point(finish, step * @base)

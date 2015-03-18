@@ -18,10 +18,14 @@ module Kaminari
 
         def enough?(value)
           if asc?
-            value < @global_finish
+            value >= @global_finish
           else
-            value > @global_finish
+            value <= @global_finish
           end
+        end
+
+        def not_enough?(value)
+          !enough?(value)
         end
       end
     end

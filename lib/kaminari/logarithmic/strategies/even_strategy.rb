@@ -12,7 +12,7 @@ module Kaminari
           value = @global_start
           step = @base
           result = []
-          while enough?(value)
+          while not_enough?(value)
             result << value
             if asc?
               value = value + step
